@@ -1,0 +1,110 @@
+{
+  "name": "interactive-tutorial-system",
+  "displayName": "Interactive Tutorial System",
+  "description": "通过 Git 版本控制实现交互式教程步骤流转的 VS Code 插件",
+  "version": "0.0.1",
+  "publisher": "tutorial-system",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Education",
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:interactiveTutorial.openTutorial",
+    "onView:tutorialStepTree",
+    "onView:tutorialSnippetList"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "interactiveTutorial.openTutorial",
+        "title": "打开教程",
+        "category": "Interactive Tutorial"
+      },
+      {
+        "command": "interactiveTutorial.exportProject",
+        "title": "导出当前进度",
+        "category": "Interactive Tutorial"
+      },
+      {
+        "command": "interactiveTutorial.exportSnippets",
+        "title": "导出代码片段",
+        "category": "Interactive Tutorial"
+      },
+      {
+        "command": "interactiveTutorial.navigateToStep",
+        "title": "切换到步骤",
+        "category": "Interactive Tutorial"
+      },
+      {
+        "command": "interactiveTutorial.addSnippet",
+        "title": "添加到导出列表",
+        "category": "Interactive Tutorial"
+      },
+      {
+        "command": "interactiveTutorial.clearSnippets",
+        "title": "清空导出列表",
+        "category": "Interactive Tutorial"
+      },
+      {
+        "command": "interactiveTutorial.closeTutorial",
+        "title": "关闭教程",
+        "category": "Interactive Tutorial"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "tutorial-explorer",
+          "title": "教程",
+          "icon": "resources/tutorial-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "tutorial-explorer": [
+        {
+          "id": "tutorialStepTree",
+          "name": "步骤树"
+        },
+        {
+          "id": "tutorialSnippetList",
+          "name": "导出片段"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "test:unit": "mocha --require ts-node/register 'src/test/unit/**/*.test.ts'"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/glob": "^8.1.0",
+    "@types/js-yaml": "^4.0.9",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "@vscode/test-electron": "^2.3.8",
+    "chai": "^4.3.10",
+    "eslint": "^8.55.0",
+    "fast-check": "^3.15.0",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "simple-git": "^3.22.0"
+  }
+}
